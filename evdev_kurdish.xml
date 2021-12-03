@@ -1,0 +1,81 @@
+		<layout>
+			<configItem>
+				<name>ku-fi</name>
+				<shortDescription>ku-fi</shortDescription>
+				<description>Kurdish on Finish keyboard</description>
+				<languageList>
+					<iso639Id>kur</iso639Id>
+				</languageList>
+			</configItem>
+			<variantList/>
+		</layout>
+
+		<layout>
+			<configItem>
+				<name>ku-de</name>
+				<shortDescription>ku-de</shortDescription>
+				<description>Kurdish on German keyboard</description>
+				<languageList>
+					<iso639Id>kur</iso639Id>
+				</languageList>
+			</configItem>
+			<variantList/>
+		</layout>
+
+		<layout>
+			<configItem>
+				<name>ku-iq</name>
+				<shortDescription>ku-iq</shortDescription>
+				<description>Kurdish on Kurdish-Iraq keyboard</description>
+				<languageList>
+					<iso639Id>kur</iso639Id>
+				</languageList>
+			</configItem>
+			<variantList>
+				<variant>
+					<configItem>
+						<name>ku_alt</name>
+						<shortDescription>ku</shortDescription>
+						<description>Kurdish (Iraq, Latin Alt-Q)</description>
+						<languageList>
+							<iso639Id>kur</iso639Id>
+						</languageList>
+					</configItem>
+				</variant>
+			</variantList>
+		</layout>
+
+		<layout>
+			<configItem>
+				<name>ku-gb</name>
+				<shortDescription>ku-gb</shortDescription>
+				<description>Kurdish on British English keyboard</description>
+				<languageList>
+					<iso639Id>kur</iso639Id>
+				</languageList>
+			</configItem>
+			<variantList/>
+		</layout>
+
+		<layout>	
+			<configItem>	 
+				<name>ku-us</name>
+				<shortDescription>ku-us</shortDescription>
+				<description>Kurdish on US keyboard</description>
+				<languageList>
+					<iso639Id>kur</iso639Id>
+				</languageList>
+			</configItem>
+			<variantList>
+				<variant>
+					<configItem>
+						<name>ku_alt</name>
+						<shortDescription>ku</shortDescription>
+						<description>Kurdish (alt)</description>
+						<languageList>
+							<iso639Id>kur</iso639Id>
+						</languageList>
+					</configItem>
+				</variant>
+			</variantList>
+		</layout>
