@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+
+  # ── Ubuntu (native runners) ────────────────────────────────────────────────
+
+  ubuntu:
+    name: Ubuntu ${{ matrix.ubuntu }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ubuntu: "22.04"
+            runner: ubuntu-22.04
+          - ubuntu: "24.04"
+            runner: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XKB tools and Xvfb
+        run: sudo apt-get install -y --no-install-recommends x11-xkb-utils xkb-data xvfb
+
+      - name: Install Kurdish keyboard layouts
+        run: sudo bash install.sh
+
+      - name: Validate each layout loads under Xvfb
+        run: |
+          Xvfb :99 -screen 0 1024x768x24 &
+          sleep 1
+          for layout in ku-us ku-gb ku-de ku-fi ku-iq; do
+            DISPLAY=:99 setxkbmap -layout "$layout" -print > /dev/null
+            echo "OK: $layout"
+          done
+
+  # ── Fedora (Docker) ────────────────────────────────────────────────────────
+
+  fedora:
+    name: Fedora ${{ matrix.fedora }}
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        fedora: [ "40", "41" ]
+
+    container:
+      image: fedora:${{ matrix.fedora }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XKB tools and Xvfb
+        run: dnf install -y sudo xkeyboard-config libxkbcommon-utils xorg-x11-server-Xvfb lsb_release
+
+      - name: Install Kurdish keyboard layouts
+        run: bash install.sh
+
+      - name: Validate each layout loads under Xvfb
+        run: |
+          Xvfb :99 -screen 0 1024x768x24 &
+          sleep 1
+          for layout in ku-us ku-gb ku-de ku-fi ku-iq; do
+            DISPLAY=:99 setxkbmap -layout "$layout" -print > /dev/null
+            echo "OK: $layout"
+          done
+
+  # ── Linux Mint (Docker — Mint is Ubuntu-based, use official images) ────────
+
+  mint:
+    name: Linux Mint ${{ matrix.mint }}
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - mint: "21"
+            image: linuxmintd/mint21-amd64
+          - mint: "22"
+            image: linuxmintd/mint22-amd64
+
+    container:
+      image: ${{ matrix.image }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XKB tools and Xvfb
+        run: apt-get install -y --no-install-recommends sudo x11-xkb-utils xkb-data xvfb lsb-release
+
+      - name: Install Kurdish keyboard layouts
+        run: bash install.sh
+
+      - name: Validate each layout loads under Xvfb
+        run: |
+          Xvfb :99 -screen 0 1024x768x24 &
+          sleep 1
+          for layout in ku-us ku-gb ku-de ku-fi ku-iq; do
+            DISPLAY=:99 setxkbmap -layout "$layout" -print > /dev/null
+            echo "OK: $layout"
+          done
