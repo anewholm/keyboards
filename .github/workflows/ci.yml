@@ -57,7 +57,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install XKB tools and Xvfb
-        run: dnf install -y sudo xkeyboard-config libxkbcommon-utils xorg-x11-server-Xvfb lsb_release
+        run: dnf install -y sudo xkeyboard-config xorg-x11-server-utils xorg-x11-server-Xvfb redhat-lsb-core
 
       - name: Install Kurdish keyboard layouts
         run: bash install.sh
