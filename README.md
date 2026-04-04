@@ -47,9 +47,15 @@ After installation, add the Kurdish layout via your desktop settings:
 **GNOME / Ubuntu:**
 > Settings → Keyboard → Input Sources → + → Other → Kurdish
 
+## Uninstall
+
+Remove the `ku-*` files from `/usr/share/X11/xkb/symbols/` and restore `evdev.xml` from the `evdev.xml-old` backup that the installer creates automatically.
+
 ## Compatibility
 
 Tested on Ubuntu 22.04 and 24.04. The XKB symbols directory (`/usr/share/X11/xkb/symbols/`) is at the same path on all Debian/Ubuntu-based distributions.
+
+**Wayland:** XKB layouts work under both X11 and Wayland. On Wayland (GNOME 45+, KDE Plasma 6), add the layout through the same Settings → Keyboard path — no additional steps required.
 
 ## License
 
