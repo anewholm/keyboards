@@ -105,3 +105,34 @@ jobs:
             DISPLAY=:99 setxkbmap -layout "$layout" -print > /dev/null
             echo "OK: $layout"
           done
+
+  # ── Kali Linux (Docker — Debian-based rolling release) ────────────────────
+
+  kali:
+    name: Kali Linux ${{ matrix.kali }}
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        kali: [ "2024.4", "2025.1" ]
+
+    container:
+      image: kalilinux/kali-rolling:${{ matrix.kali }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XKB tools and Xvfb
+        run: apt-get install -y --no-install-recommends sudo x11-xkb-utils xkb-data xvfb
+
+      - name: Install Kurdish keyboard layouts
+        run: bash install.sh
+
+      - name: Validate each layout loads under Xvfb
+        run: |
+          Xvfb :99 -screen 0 1024x768x24 &
+          sleep 1
+          for layout in ku-us ku-gb ku-de ku-fi ku-iq; do
+            DISPLAY=:99 setxkbmap -layout "$layout" -print > /dev/null
+            echo "OK: $layout"
+          done
