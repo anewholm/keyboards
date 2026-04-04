@@ -61,7 +61,7 @@ Remove the `ku-*` files from `/usr/share/X11/xkb/symbols/` and restore `evdev.xm
 | KUbuntu | 22.04, 24.04 | Tested in CI (same packages as Ubuntu) |
 | Linux Mint | 21, 22 | Tested in CI |
 | Fedora | 40, 41 | Tested in CI |
-| Kali Linux | 2024.4, 2025.1 | Tested in CI |
+| Kali Linux | rolling, last-release | Tested in CI |
 | Debian / other Debian-based | — | Should work (same XKB path) |
 
 The XKB symbols directory (`/usr/share/X11/xkb/symbols/`) is at the same path on all tested distributions.

@@ -106,18 +106,24 @@ jobs:
             echo "OK: $layout"
           done
 
-  # ── Kali Linux (Docker — Debian-based rolling release) ────────────────────
+  # ── Kali Linux (Docker — Debian-based) ────────────────────────────────────
+  # kali-rolling: weekly snapshot of current rolling release
+  # kali-last-release: quarterly stable snapshot
 
   kali:
-    name: Kali Linux ${{ matrix.kali }}
+    name: Kali Linux ${{ matrix.name }}
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
-        kali: [ "2024.4", "2025.1" ]
+        include:
+          - name: rolling
+            image: kalilinux/kali-rolling
+          - name: last-release
+            image: kalilinux/kali-last-release
 
     container:
-      image: kalilinux/kali-rolling:${{ matrix.kali }}
+      image: ${{ matrix.image }}
 
     steps:
       - uses: actions/checkout@v4
