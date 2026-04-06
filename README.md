@@ -1,5 +1,6 @@
 # Kurdish keyboard layouts for Linux
 
+![Human made content](human-made-content.png "Human made content")
 [![CI](https://github.com/anewholm/keyboards/actions/workflows/ci.yml/badge.svg)](https://github.com/anewholm/keyboards/actions/workflows/ci.yml)
 
 Hybrid Kurdish (Kurmanjî Latin/Qamişlo) keyboard layouts for Ubuntu and other Linux distributions using XKB. Each layout merges Kurdish characters into an existing base keyboard layout, so you keep your familiar key positions while gaining Kurdish input.
